@@ -12,6 +12,11 @@ snake [0] = {
 }
 //variavel para definir sentido que vai iniciar o movimento
 let direction = "right";
+//variavel da comida aleatória 
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
 
 //função para criar background do jogo
 function criarBG(){
@@ -24,6 +29,11 @@ function criarSnake(){
         context.fillStyle = "green";
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }    
+}
+//Criar função de comida da Snake
+function drawFood(){
+    context.fillStyle="red"
+    context.fillRect(food.x, food.y, box, box)
 }
 
 //criação do evento de click e chama a update
@@ -38,7 +48,7 @@ function update (event){
 } 
 //inicar as funções para iniciar o jogo
 function iniciarJogo(){
-    //função para atravessar limete do background e aparecer do outro lado
+//função para atravessar limete do background e aparecer do outro lado
     if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
     if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
     if(snake[0].y > 15 * box && direction == "up") snake[0].y = 0;
@@ -47,6 +57,8 @@ function iniciarJogo(){
     criarBG();
     //inicar corpo da Snake
     criarSnake();
+    //iniciar comida da Snake
+    drawFood();
 //Setar posição para x e y da  Snake
     let snakeX = snake[0].x; 
     let snakeY = snake[0].y;
