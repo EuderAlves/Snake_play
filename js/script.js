@@ -63,14 +63,20 @@ function iniciarJogo(){
     let snakeX = snake[0].x; 
     let snakeY = snake[0].y;
 
-//setar coordenadas que Snake vai andar 
+//Setar coordenadas que Snake vai andar 
     if(direction == "right") snakeX += box;
     if(direction == "left") snakeX -= box;
     if(direction == "up") snakeY += box;
     if(direction == "down") snakeY -= box;
 
-//funçãoque tira o ultimo elementodo nosso "array"
+//Função comer a comida 
+if(snakeX != food.x || snakeY != food.y){
     snake.pop();
+} else{
+     food.x = Math.floor(Math.random() * 15 + 1) * box;
+     food.y = Math.floor(Math.random() * 15 + 1) * box;
+}
+
 // variavel que acrecenta um elemto a frente
      let newHead = {
          x: snakeX,
